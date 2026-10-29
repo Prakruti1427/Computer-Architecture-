@@ -1,0 +1,33 @@
+# Rotate Operations on 8-bit Binary Numbers
+
+num = 0b10110110
+
+# a) Rotate Left Without Carry (ROL)
+print("a) Rotate Left Without Carry (ROL)")
+print("Original number:", format(num, '08b'))
+
+rol = num
+for i in range(2):
+    rol = ((rol << 1) | (rol >> 7)) & 0xFF
+    print("Step", i + 1, ":", format(rol, '08b'))
+
+print("Final ROL result:", format(rol, '08b'))
+
+
+# b) Rotate Left With Carry (RCL)
+print("\nb) Rotate Left With Carry (RCL)")
+print("Original number:", format(num, '08b'))
+
+rcl = num
+carry = 0
+print("Initial carry:", carry)
+
+for i in range(2):
+    new_carry = (rcl >> 7) & 1
+    rcl = ((rcl << 1) | carry) & 0xFF
+    carry = new_carry
+    print("Step", i + 1, ":", format(rcl, '08b'),
+          "Carry:", carry)
+
+print("Final RCL result:", format(rcl, '08b'))
+print("Final carry:", carry)
